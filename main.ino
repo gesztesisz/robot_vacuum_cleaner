@@ -1,4 +1,5 @@
 #include "motor.h"
+#include "uasc.h"
 
 //volatile int speed = 0;
 
@@ -15,5 +16,12 @@ void setup(){
 }
 
 void loop (){
+  if(
+    (measure_uascLeft() = 1)
+    ||
+    (measure_uascMiddle() = 1)
+    ||
+    (measure_uascRight() = 1)
+  )
     set_direction();
 }
