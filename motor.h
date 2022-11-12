@@ -6,7 +6,7 @@
 // 1  = forward
 // 0  = stop
 // -1 = backward
-int direction = 0;  
+volatile int speed = 0;
 
 void set_direction(){
     if(speed > 0 ){ 
@@ -17,10 +17,10 @@ void set_direction(){
         analogWrite(motor2_in2, speed);
     }
     else if(speed < 0 ){
-        analogWrite(motor1_in1, speed);
+        analogWrite(motor1_in1, abs(speed));
         analogWrite(motor1_in2, 0);
 
-        analogWrite(motor2_in1, speed);
+        analogWrite(motor2_in1, abs(speed));
         analogWrite(motor2_in2, 0);
     }
     else {

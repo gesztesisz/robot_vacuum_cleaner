@@ -1,6 +1,6 @@
 #include "motor.h"
 
-int speed = 0;
+//volatile int speed = 0;
 
 void setup(){
   pinMode(motor1_in1, OUTPUT);
@@ -11,9 +11,9 @@ void setup(){
   analogWrite(motor1_in1, 0);
   analogWrite(motor1_in2, 0);
 
-  delay(10000); // WAIT 10 SEC BEFORE START
+    speed = 255;
 }
 
 void loop (){
-    set_direction(speed);
+    set_direction();
 }
