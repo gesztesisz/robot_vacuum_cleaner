@@ -1,31 +1,17 @@
-#include "motor.h"
 #include "uasc.h"
+#define trig_left 2
+#define echo_left 3
 
-//volatile int speed = 0;
+long duration_left;
+int distance_left;
 
 void setup(){
-  pinMode(motor1_in1, OUTPUT);
-  pinMode(motor1_in2, OUTPUT);
-  pinMode(motor2_in1, OUTPUT);
-  pinMode(motor2_in2, OUTPUT);
-
-  analogWrite(motor1_in1, 0);
-  analogWrite(motor1_in2, 0);
-
-    speed = 255;
+  pinMode(trig_left, OUTPUT);
+  pinMode(echo_left, INPUT);
+  Serial.begin(9600);
 }
 
+
 void loop (){
-  if(
-    (measure_uascLeft() = 1)
-    ||
-    (measure_uascMiddle() = 1)
-    ||
-    (measure_uascRight() = 1)
-  )
-  {speed = 0;}
-  else {
-    speed = 255;
-  }
-  set_direction();
+  uasc_measure_left();
 }
