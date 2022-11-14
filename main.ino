@@ -23,5 +23,9 @@ void loop (){
     ||
     (measure_uascRight() = 1)
   )
-    set_direction();
+  {speed = 0;}
+  else {
+    speed = 255;
+  }
+  set_direction();
 }

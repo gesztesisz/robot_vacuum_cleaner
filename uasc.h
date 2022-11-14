@@ -8,6 +8,8 @@
 volatile long duration;
 volatile int distance; 
 
+
+
 const int warning_distance = 2; // SEND SIGNAL IF SOMETHING IS IN THIS RANGE
 
 int measure_uascLeft   (){
