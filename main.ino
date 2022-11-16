@@ -1,19 +1,15 @@
 #include "motor.h"
 
 //volatile int speed = 0;
+volatile unsigned int counter = 0;
 
 void setup(){
-  pinMode(motor1_in1, OUTPUT);
-  pinMode(motor1_in2, OUTPUT);
-  pinMode(motor2_in1, OUTPUT);
-  pinMode(motor2_in2, OUTPUT);
-
-  analogWrite(motor1_in1, 0);
-  analogWrite(motor1_in2, 0);
-
-    speed = 255;
+  counter++; //Simple counter check the SW is not in infinite loop
+  if(counter == 65530)
+    counter = 0;
+  
 }
 
 void loop (){
-    set_direction();
+
 }
