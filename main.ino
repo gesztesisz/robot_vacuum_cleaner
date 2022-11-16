@@ -17,5 +17,5 @@ void loop (){
   uasc_measure_middle();
   uasc_measure_right();
   Serial.println();
-  delay(50);
+  
 }
