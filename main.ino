@@ -13,9 +13,11 @@ void setup(){
 
 
 void loop (){
-  uasc_measure_left();
-  uasc_measure_middle();
-  uasc_measure_right();
+  if(uasc_blocker){       //false -> blocked, true -> not blocked
+    uasc_measure_left();
+    uasc_measure_middle();
+    uasc_measure_right();
+  }
   Serial.println();
   
 }
