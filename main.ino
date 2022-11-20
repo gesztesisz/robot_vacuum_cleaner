@@ -2,7 +2,7 @@
 volatile unsigned int counter = 0;
 unsigned long time_in  = 0;
 unsigned long time_off = 0;
-void real_delay();
+inline void real_delay();
 
 int delay_time = 50;
 
@@ -22,8 +22,8 @@ void loop (){
 inline void real_delay(){
   time_off = millis();
   Serial.println(delay_time - (time_off-time_in));
-  if( (time_off - time_in) >= 0)
+  if( (delay_time-(time_off - time_in)) >= 0)
     delay(delay_time - (time_off-time_in));
-  else 
+  //else 
     //error_code()
 }
