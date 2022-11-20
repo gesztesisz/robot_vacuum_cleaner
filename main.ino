@@ -1,5 +1,3 @@
-#include "motor.h"
-
 //volatile int speed = 0;
 volatile unsigned int counter = 0;
 unsigned long time_in  = 0;
@@ -21,7 +19,11 @@ void loop (){
 
   real_delay();
 }
-void real_delay(){
+inline void real_delay(){
   time_off = millis();
-  delay(delay_time - (time_off-time_in));
+  Serial.println(delay_time - (time_off-time_in));
+  if( (time_off - time_in) >= 0)
+    delay(delay_time - (time_off-time_in));
+  else 
+    //error_code()
 }
