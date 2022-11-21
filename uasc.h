@@ -7,7 +7,7 @@
 
 volatile long duration;
 volatile int distance;
-bool uasc_blocker = false;
+bool uasc_blocked = false;
 
 inline void uasc_measure_left(){
     digitalWrite(trig_left, LOW);

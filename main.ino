@@ -13,7 +13,7 @@ void setup(){
 
 
 void loop (){
-  if(uasc_blocker){       //false -> blocked, true -> not blocked
+  if(!uasc_blocked){       //false -> blocked, true -> not blocked
     uasc_measure_left();
     uasc_measure_middle();
     uasc_measure_right();
