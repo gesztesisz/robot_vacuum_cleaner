@@ -1,11 +1,11 @@
-#include "motor.h"
+#include "uasc.h"
 
 volatile unsigned int counter = 0;
 unsigned long time_in  = 0;
 unsigned long time_off = 0;
 inline void real_delay();
 
-int delay_time = 50;
+unsigned int delay_time = 1000;
 
 void setup(){
   pinMode(trig_left, OUTPUT);
@@ -19,10 +19,21 @@ void setup(){
 
 
 void loop (){
+    time_in = millis();
     counter++;
     if(!uasc_blocked){       //false -> blocked, true -> not blocked
       uasc_measure_left();
       uasc_measure_middle();
       uasc_measure_right();
     }
+
+  time_off = millis();
+  real_delay();
+}
+
+void real_delay(){
+  if( (time_off-time_in) < delay_time)
+    delay(delay_time - (time_off-time_in));
+  //else 
+    //error_code();
 }
