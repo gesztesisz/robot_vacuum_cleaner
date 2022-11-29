@@ -1,4 +1,5 @@
 #include "uasc.h"
+#include "error_code.h"
 
 volatile unsigned int counter = 0;
 unsigned long time_in  = 0;
@@ -35,5 +36,5 @@ void real_delay(){
   if( (time_off-time_in) < delay_time)
     delay(delay_time - (time_off-time_in));
   else 
-    error_code(2);
+    error_code(1);
 }
