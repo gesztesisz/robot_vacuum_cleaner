@@ -34,6 +34,6 @@ void loop (){
 void real_delay(){
   if( (time_off-time_in) < delay_time)
     delay(delay_time - (time_off-time_in));
-  //else 
-    //error_code();
+  else 
+    error_code(2);
 }
