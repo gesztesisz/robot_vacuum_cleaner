@@ -12,6 +12,7 @@ background = (0, 0, 0)
 robot_color=(255,0,0)
 next_x = 0
 next_y = 0
+wait = 0.005
 
 array = []
 ind_x = 0
@@ -108,15 +109,23 @@ while True:
     
     if not its_wall() :
         next_x,next_y = _map(random.randint(0,360))
+        time.sleep(wait)
         continue
     else:
         x += next_x
         y += next_y
     
-    collect_trash()
 
+     
+    for i in range(len(array)):
+        if (x-robot_size <= array[i][0] <= x + robot_size) and (y-robot_size <= array[i][1] <= y + robot_size):
+            score += 1
+            print(score)
+            array.pop(i)
+            break
+            
     print_map()
-    time.sleep(0.005)
+    time.sleep(wait)
     
 pygame.quit()
 quit()
