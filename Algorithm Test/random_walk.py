@@ -115,14 +115,7 @@ while True:
         x += next_x
         y += next_y
     
-
-     
-    for i in range(len(array)):
-        if (x-robot_size <= array[i][0] <= x + robot_size) and (y-robot_size <= array[i][1] <= y + robot_size):
-            score += 1
-            print(score)
-            array.pop(i)
-            break
+    collect_trash()
             
     print_map()
     time.sleep(wait)
