@@ -79,7 +79,7 @@ def print_map():
     
     pygame.display.update()
 
-def valid_move():
+def its_wall():
     if ((y + next_y - robot_size) <= 0) or ((y + next_y + robot_size) >= map_y) or ((x + next_x - robot_size) <= 0.0) or ((x + next_x + robot_size) >= map_x):
         return False
     return True
@@ -90,6 +90,14 @@ def generate_trash():
         ind_y = random.uniform(0,map_y-10)
         if [ind_x,ind_y] not in array:
             array.append([ind_x,ind_y])
+            
+def collect_trash():
+    for i in range(len(array)):
+        if (x-robot_size-2 <= array[i][0] <= x + robot_size-2) and (y-robot_size-2 <= array[i][1] <= y + robot_size-2):
+            score += 1
+            print(score)
+            array.pop(i)
+            break
 
 #directions = ['up','down','left','right']
 #x,y = _map(random.randint(0,360))
@@ -98,25 +106,15 @@ generate_trash()
 score = 0
 while True:
     
-    if not valid_move() :
+    if not its_wall() :
         next_x,next_y = _map(random.randint(0,360))
         continue
     else:
         x += next_x
         y += next_y
     
-    if [x,y] in array:
-        array.remove[x,y]
-        score += 1
-        print(score)
-     
-    for i in range(len(array)):
-        if (x-robot_size <= array[i][0] <= x + robot_size) and (y-robot_size <= array[i][1] <= y + robot_size):
-            score += 1
-            print(score)
-            array.pop(i)
-            break
-            
+    collect_trash()
+
     print_map()
     time.sleep(0.005)
     
