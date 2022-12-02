@@ -22,14 +22,19 @@ void setup(){
 void loop (){
     time_in = millis();
     counter++;
-    if(!uasc_blocked){       //false -> blocked, true -> not blocked
+    if(uasc_left_enabled){
       uasc_measure_left();
+    }
+    if(uasc_middle_enabled){
       uasc_measure_middle();
+    }
+    if(uasc_right_enabled){
       uasc_measure_right();
     }
 
-  time_off = millis();
-  real_delay();
+
+    time_off = millis();
+    real_delay();
 }
 
 void real_delay(){

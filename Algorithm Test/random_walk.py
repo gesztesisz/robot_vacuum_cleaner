@@ -2,6 +2,13 @@ import pygame
 import random
 import time
 
+class obstacle_obj:
+    def __init__ (self,pos_x,pos_y,shape,size_x,size_y):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.shape = shape
+        self.size_x = size_x
+        self.size_y = size_y
 step = 1
 robot_size = 10
 map_x = 500
@@ -13,8 +20,12 @@ robot_color=(255,0,0)
 next_x = 0
 next_y = 0
 wait = 0.005
+num_of_trash = 100
+num_of_obstacle = 20
 
-array = []
+trash_array = []
+
+obstacle_array = []
 ind_x = 0
 ind_y = 0
 
@@ -75,47 +86,59 @@ def _map(inp):
 def print_map():
     dis.fill(background)
     pygame.draw.circle(dis, robot_color, (x,y), robot_size)
-    for i in range(len(array)):
-        pygame.draw.rect(dis,(255,255,255),[array[i][0],array[i][1],10,10])
-    
+    for i in range(len(trash_array)):
+        pygame.draw.rect(dis,(255,255,255),[trash_array[i][0],trash_array[i][1],10,10])
+        
+    for i in range(len(obstacle_array)):
+        pygame.draw.rect(dis,(125,125,125),[obstacle_array[i][0],obstacle_array[i][1],10,10])
     pygame.display.update()
 
 def its_wall():
     if ((y + next_y - robot_size) <= 0) or ((y + next_y + robot_size) >= map_y) or ((x + next_x - robot_size) <= 0.0) or ((x + next_x + robot_size) >= map_x):
-        return False
+        return True
+    return False
+'''
+def its_obstacle():
+    for i in range(len(obstacle_array)):
+        if ((y + next_y - robot_size) <= obstacle_array[]) or ((y + next_y + robot_size) >= map_y) or ((x + next_x - robot_size) <= 0.0) or ((x + next_x + robot_size) >= map_x):
+            return False
     return True
-
+'''
 def generate_trash():
-    for i in range(200):    
+    for i in range(num_of_trash):    
         ind_x = random.uniform(0,map_x-10)
         ind_y = random.uniform(0,map_y-10)
-        if [ind_x,ind_y] not in array:
-            array.append([ind_x,ind_y])
-            
+        if [ind_x,ind_y] not in trash_array:
+            trash_array.append([ind_x,ind_y])
+
 def collect_trash():
-    for i in range(len(array)):
-        if (x-robot_size-2 <= array[i][0] <= x + robot_size-2) and (y-robot_size-2 <= array[i][1] <= y + robot_size-2):
+    for i in range(len(trash_array)):
+        if (x-robot_size-2 <= trash_array[i][0] <= x + robot_size-2) and (y-robot_size-2 <= trash_array[i][1] <= y + robot_size-2):
             score += 1
             print(score)
-            array.pop(i)
+            trash_array.pop(i)
             break
+
+
 
 #directions = ['up','down','left','right']
 #x,y = _map(random.randint(0,360))
 next_x, next_y = _map(random.randint(0,359))
 generate_trash()
+generate_obstacle()
 score = 0
 while True:
     
-    if not its_wall() :
-        next_x,next_y = _map(random.randint(0,360))
+    if its_wall() :
+        next_x,next_y = _map(random.randint([90,-90]))
         time.sleep(wait)
         continue
     else:
         x += next_x
         y += next_y
     
-    collect_trash()
+    
+    #collect_trash()
             
     print_map()
     time.sleep(wait)
