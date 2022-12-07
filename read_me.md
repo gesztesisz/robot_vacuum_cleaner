@@ -1,1 +1,0 @@
-Szakdolgozat I. és II.
