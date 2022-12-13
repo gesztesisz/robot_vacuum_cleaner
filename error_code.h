@@ -1,4 +1,4 @@
-int priority_array[4] = {1,2,3,4}; //1 -> HIGH Priority, 4 -> LOW priority
+const int priority_array[4] = {1,2,3,4}; //1 -> HIGH Priority, 4 -> LOW priority
 int priority = 0;
 
 int error_code (int code){
